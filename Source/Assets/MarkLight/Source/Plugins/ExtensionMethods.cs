@@ -330,14 +330,18 @@ namespace MarkLight
             var parent = view.transform.parent;
             if (parent == null)
                 return;
-
+            
             var component = parent.GetComponent<T>();
             if (component != null)
             {
                 action(component);
             }
+            else
+            {
+                parent.gameObject.ForEachParent(action);                
+            }
 
-            parent.gameObject.ForEachParent(action);
+            //parent.gameObject.ForEachParent(action);
         }
 
         /// <summary>
