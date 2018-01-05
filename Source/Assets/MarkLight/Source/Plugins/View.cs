@@ -1318,7 +1318,7 @@ namespace MarkLight
         /// </summary>
         public virtual void ChildrenChanged()
         {
-            this.ForEachParent<View>(x => x.ChildrenChanged());
+            //this.ForEachParent<View>(x => x.ChildrenChanged());
         }
 
         /// <summary>
