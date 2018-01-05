@@ -1,10 +1,10 @@
 <UIExamples xmlns="MarkLight">
-  <UserInterface>    
+  <UserInterface UIScaleMode="ScaleWithScreenSize" MatchWidthOrHeight="1.0" ReferenceResolution="1280,720">
     <Region BackgroundColor="#a6bbca">
       <TabPanel Style="Menu" Margin="10,10,10,10">
         <Tab Text="Buttons &amp; Input">
           <TabHeader Style="Menu" />
-          
+
           <TabPanel Style="SubMenu" TabListOrientation="Horizontal" Margin="5">
             <Tab Text="Buttons">
               <TabHeader Style="SubMenu" />
@@ -62,7 +62,7 @@
 
         <Tab Text="Data Binding">
           <TabHeader Style="Menu" />
-          
+
           <TabPanel Style="SubMenu" TabListOrientation="Horizontal" Margin="5">
             <Tab Text="ComboBox">
               <TabHeader Style="SubMenu" />

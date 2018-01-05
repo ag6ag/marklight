@@ -1,5 +1,5 @@
 <GameMenuExample xmlns="MarkLight" SoundEffectsVolume="100" MusicVolume="75" EasyMode="True" DisplayName="Player">
-  <UserInterface>
+  <UserInterface UIScaleMode="ScaleWithScreenSize" MatchWidthOrHeight="1.0" ReferenceResolution="1280,720">
 
     <!-- View switcher that switches between main menu, options, level select and in-game -->
     <ViewSwitcher Id="ContentViewSwitcher" TransitionIn="BounceInAnimation">
@@ -50,7 +50,7 @@
       <!-- Level Select -->
       <Region Id="LevelSelect" Width="600" Height="520">
         <Region Style="Window" Margin="0,50px,0,36px">
-          <List Style="LevelSelectList" Orientation="Horizontal" CanSelect="False" Margin="50,60,50,50" 
+          <List Style="LevelSelectList" Orientation="Horizontal" CanSelect="False" Margin="50,60,50,50"
                 Items="{Levels}" Spacing="10" Overflow="Wrap" IsScrollable="True" UseListMask="False"
                 DisableInteractionScrollDelta="1">
             <ListItem Id="Stars0" IsTemplate="True" Width="82" Height="93" BackgroundColor="Clear">
@@ -70,7 +70,7 @@
               <Image Style="Stars2" Alignment="Bottom" Offset="0,0,0,20" RaycastBlockMode="Never" />
               <Label Style="Level" Text="{#Item.Number}" Alignment="Top" RaycastBlockMode="Never"  />
             </ListItem>
-            
+
             <ListItem Id="Stars3" IsTemplate="True" Width="82" Height="93" BackgroundColor="Clear">
               <Button Style="LevelSelectButton" Click="StartLevel" />
               <Image Style="Stars3" Alignment="Bottom" Offset="0,0,0,20" RaycastBlockMode="Never" />
@@ -92,7 +92,7 @@
         <Image Style="TitleRibbon" Alignment="Top" />
         <Label Style="TitleRibbon" Text="Level Select" Width="210" Alignment="Top" />
       </Region>
-      
+
       <!-- In-game -->
       <Region Id="InGame">
         <Button Style="Round" Click="BackToMainMenu" Alignment="BottomLeft" Offset="80,0,0,80">

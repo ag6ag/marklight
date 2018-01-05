@@ -1,6 +1,6 @@
 <PlayingCardsExample xmlns="MarkLight">
-  <UserInterface>
-    
+  <UserInterface UIScaleMode="ScaleWithScreenSize" MatchWidthOrHeight="1.0" ReferenceResolution="1280,720">
+
     <Group Orientation="Vertical" ContentAlignment="Left" Spacing="10">
       <Group Orientation="Horizontal" Spacing="15px">
         <Button Text="Add" Click="Add" AdjustToText="Width" TextPadding="20,10,20,10" />
@@ -23,7 +23,7 @@
           <Image Sprite="Assets/MarkLight/Examples/Sprites/Cards/ace_of_hearts.png" Margin="3" />
         </ListItem>
       </List>
-      
+
       <Label Text="{FlowList.SelectedItem.Name}" AdjustToText="Width" />
     </Group>
 

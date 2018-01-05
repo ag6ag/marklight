@@ -1,7 +1,7 @@
 <ViewSwitcherExample xmlns="MarkLight">
-  <UserInterface>
+  <UserInterface UIScaleMode="ScaleWithScreenSize" MatchWidthOrHeight="1.0" ReferenceResolution="1280,720">
 
-    <ViewSwitcher Id="ContentViewSwitcher" TransitionOut="SlideOut" TransitionIn="SlideIn" 
+    <ViewSwitcher Id="ContentViewSwitcher" TransitionOut="SlideOut" TransitionIn="SlideIn"
                   TransitionOutReverse="SlideOutReverse" TransitionInReverse="SlideInReverse">
 
       <Region Id="MainMenuScreen">
@@ -44,7 +44,7 @@
     <ViewAnimation Id="SlideInReverse">
       <Animate Field="Offset" To="0,0,0" Duration="250ms" EasingFunction="QuadraticEaseOut" />
     </ViewAnimation>
-  
+
   </UserInterface>
   <EventSystem />
 </ViewSwitcherExample>
