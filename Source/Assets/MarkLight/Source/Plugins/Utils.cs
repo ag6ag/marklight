@@ -15,7 +15,7 @@ namespace MarkLight
     public static class Utils
     {
         #region Fields
-                
+
         public static System.Diagnostics.Stopwatch Stopwatch;
         public static string ErrorMessage = string.Empty;
         private static System.Random _random;
@@ -41,7 +41,7 @@ namespace MarkLight
         /// Returns a random (named) color.
         /// </summary>
         public static Color GetRandomColor()
-        {            
+        {
             return ColorValueConverter.ColorCodes.Values.ElementAt(_random.Next(ColorValueConverter.ColorCodes.Values.Count));
         }
 
@@ -58,12 +58,12 @@ namespace MarkLight
                     exception = e.InnerException;
                 }
             }
-                      
+
             return String.Format("{0}{1}{2}", exception.Message, Environment.NewLine, exception.StackTrace);
         }
 
         /// <summary>
-        /// Logs error. 
+        /// Logs error.
         /// </summary>
         public static void Log(string message)
         {
@@ -92,7 +92,7 @@ namespace MarkLight
         }
 
         /// <summary>
-        /// Logs error. 
+        /// Logs error.
         /// </summary>
         public static void LogError(string error)
         {
@@ -121,7 +121,7 @@ namespace MarkLight
         }
 
         /// <summary>
-        /// Logs warning. 
+        /// Logs warning.
         /// </summary>
         public static void LogWarning(string warning)
         {
@@ -158,7 +158,7 @@ namespace MarkLight
         }
 
         /// <summary>
-        /// Logs time elapsed on the timer. Used for logging performance. 
+        /// Logs time elapsed on the timer. Used for logging performance.
         /// </summary>
         public static void LogTimer()
         {
@@ -191,13 +191,17 @@ namespace MarkLight
         public static bool SuppressLogging
         {
             get
-            {                
+            {
                 return _suppressLogging;
             }
             set
             {
 #if !UNITY_4_6 && !UNITY_5_0 && !UNITY_5_1 && !UNITY_5_2 && !UNITY_5_3
+#if UNITY_5_4 || UNITY_5_5 || UNITY_5_6
+                Debug.logger.logEnabled = !value;
+#else
                 Debug.unityLogger.logEnabled = !value;
+#endif
 #endif
                 _suppressLogging = value;
             }
