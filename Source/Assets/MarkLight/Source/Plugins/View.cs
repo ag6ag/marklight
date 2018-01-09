@@ -29,6 +29,7 @@ namespace MarkLight
         #region Fields
 
         /// <summary>
+        /// The ID of the view.
         /// </summary>
         /// <d>Specifies a unique ID for the view. Used to map the view to reference fields on the parent view model. Provides a way to reference the view in data bindings. Is used as selectors in styles.</d>
         [ChangeHandler("IdChanged")]
@@ -666,7 +667,7 @@ namespace MarkLight
         /// </summary>
         private void SetResourceBinding(BindingValueObserver bindingValueObserver, string sourceFieldName)
         {
-            string dictionaryName = null;
+            string dictionaryName = "Default";
             string resourceKey = sourceFieldName;
 
             int resourceIndex = sourceFieldName.IndexOf('.', 0);
