@@ -29,7 +29,6 @@ namespace MarkLight
         #region Fields
 
         /// <summary>
-        /// The ID of the view. 
         /// </summary>
         /// <d>Specifies a unique ID for the view. Used to map the view to reference fields on the parent view model. Provides a way to reference the view in data bindings. Is used as selectors in styles.</d>
         [ChangeHandler("IdChanged")]
@@ -80,7 +79,7 @@ namespace MarkLight
         public View Parent;
 
         /// <summary>
-        /// Content view.        
+        /// Content view.
         /// </summary>
         /// <d>View that is the parent to the content of this view. Usually it is the current view itself but when a ContentPlaceholder is used the Content points to the view that contains the ContentPlaceholder.</d>
         [NotSetFromXuml]
@@ -287,7 +286,7 @@ namespace MarkLight
         public _bool IsDestroyed;
 
         /// <summary>
-        /// Indicates if the view has been created dynamically. 
+        /// Indicates if the view has been created dynamically.
         /// </summary>
         [NotSetFromXuml]
         public _bool IsDynamic;
@@ -341,7 +340,7 @@ namespace MarkLight
         private bool _isDefaultState;
         private bool _isInitialized;
         private string _previousState;
-        private StateAnimation _stateAnimation;        
+        private StateAnimation _stateAnimation;
 
 #if UNITY_4_6 || UNITY_5_0
         private bool _eventSystemTriggersInitialized;
@@ -387,7 +386,7 @@ namespace MarkLight
         }
 
         /// <summary>
-        /// Sets view field value. 
+        /// Sets view field value.
         /// </summary>
         /// <param name="viewField">View field path.</param>
         /// <param name="value">Value to be set.</param>
@@ -454,7 +453,7 @@ namespace MarkLight
         }
 
         /// <summary>
-        /// Sets view field is-set indicator. 
+        /// Sets view field is-set indicator.
         /// </summary>
         public void SetIsSet(string viewField)
         {
@@ -551,7 +550,7 @@ namespace MarkLight
                         continue;
                     }
 
-                    // if the binding is defined as a local field (through the '#' notation) we are binding to a field on this view 
+                    // if the binding is defined as a local field (through the '#' notation) we are binding to a field on this view
                     // otherwise we are binding to our parent view
                     var bindingView = isLocalField ? this : Parent;
 
@@ -589,7 +588,7 @@ namespace MarkLight
                 bool formatStringBinding = false;
                 if (matches.Count > 1 || (matches[0].Value.Length != viewFieldBinding.Length) || !String.IsNullOrEmpty(matches[0].Groups["format"].Value))
                 {
-                    // yes. 
+                    // yes.
                     int matchCount = 0;
                     formatString = ViewFieldBinding.BindingRegex.Replace(viewFieldBinding, x =>
                     {
@@ -609,7 +608,7 @@ namespace MarkLight
                     var binding = match.Groups["field"].Value.Trim();
                     bool isLocalField, isNegatedField, isOneWay, isResource;
                     var sourceFieldName = ParseBindingString(binding, out isLocalField, out isNegatedField, out isOneWay, out isResource);
-                    
+
                     // is this a binding to a resource in a resource dictionary?
                     if (isResource)
                     {
@@ -618,7 +617,7 @@ namespace MarkLight
                         continue;
                     }
 
-                    // if the binding is defined as a local field (through the '#' notation) we are binding to a field on this view 
+                    // if the binding is defined as a local field (through the '#' notation) we are binding to a field on this view
                     // otherwise we are binding to our parent view
                     var bindingView = isLocalField ? this : Parent;
 
@@ -648,9 +647,9 @@ namespace MarkLight
                         viewFieldData.RegisterValueObserver(targetBindingValueObserver);
                         AddValueObserver(targetBindingValueObserver);
 
-                        // if this is a local binding and target view is the same as source view 
+                        // if this is a local binding and target view is the same as source view
                         // we need to make sure value propagation happens in an intuitive order
-                        // so that if we e.g. bind Text="{#Item.Score}" that Item.Score propagates to Text first. 
+                        // so that if we e.g. bind Text="{#Item.Score}" that Item.Score propagates to Text first.
                         if (isLocalField && viewFieldData.TargetView == bindingView)
                         {
                             sourceViewFieldData.PropagateFirst = true;
@@ -808,7 +807,7 @@ namespace MarkLight
         /// </summary>
         protected string GetMappedViewField<TField>(Expression<Func<TField>> expression)
         {
-            // get mapped view field           
+            // get mapped view field
             string expressionString = expression.ToString();
             string mappedViewField = _expressionViewField.Get(expressionString);
             if (mappedViewField == null)
@@ -843,7 +842,7 @@ namespace MarkLight
         /// </summary>
         public object GetValue(string viewField, out bool hasValue)
         {
-            // get view field data            
+            // get view field data
             var viewFieldData = GetViewFieldData(viewField);
             if (viewFieldData == null)
             {
@@ -893,16 +892,28 @@ namespace MarkLight
         /// </summary>
         public virtual void InitializeInternalDefaultValues()
         {
-            // initialize lists and dictionaries
-            _viewFieldData = new Dictionary<string, ViewFieldData>();
-            _stateValues = new Dictionary<string, Dictionary<string, ViewFieldStateValue>>();
-            _stateAnimations = new Dictionary<string, Dictionary<string, StateAnimation>>();
-            _setViewFields = new HashSet<string>();
-            _valueObservers = new List<ValueObserver>();
-            _eventSystemViewActions = new List<ViewAction>();
-            _changeHandlers = new HashSet<string>();
-            _changeHandlerMethods = new Dictionary<string, MethodInfo>();
-            _expressionViewField = new Dictionary<string, string>();
+            // //initialize lists and dictionaries
+            //_viewFieldData = new Dictionary<string, ViewFieldData>();
+            //_stateValues = new Dictionary<string, Dictionary<string, ViewFieldStateValue>>();
+            //_stateAnimations = new Dictionary<string, Dictionary<string, StateAnimation>>();
+            //_setViewFields = new HashSet<string>();
+            //_valueObservers = new List<ValueObserver>();
+            //_eventSystemViewActions = new List<ViewAction>();
+            //_changeHandlers = new HashSet<string>();
+            //_changeHandlerMethods = new Dictionary<string, MethodInfo>();
+            //_expressionViewField = new Dictionary<string, string>();
+            //_previousState = State;
+            //_isDefaultState = State == DefaultStateName;
+
+            _viewFieldData.Clear();
+            _stateValues.Clear();
+            _stateAnimations.Clear();
+            _setViewFields.Clear();
+            _valueObservers.Clear();
+            _eventSystemViewActions.Clear();
+            _changeHandlers.Clear();
+            _changeHandlerMethods.Clear();
+            _expressionViewField.Clear();
             _previousState = State;
             _isDefaultState = State == DefaultStateName;
         }
@@ -912,38 +923,75 @@ namespace MarkLight
         /// </summary>
         public virtual void InitializeInternal()
         {
+            //// initialize bindings
+            //foreach (var binding in ViewFieldBindings)
+            //{
+            //    SetBinding(binding.ViewField, binding.BindingString);
+            //}
+
+            //// initialize state values
+            //foreach (var stateValue in ViewFieldStateValues)
+            //{
+            //    SetStateValue(stateValue);
+            //}
+
+            //// initialize set-fields
+            //foreach (var setField in SetViewFieldNames)
+            //{
+            //    SetViewFieldSetValue(setField);
+            //}
+
+            //// initialize action handlers
+            //foreach (var actionEntry in ViewActionEntries)
+            //{
+            //    SetViewActionEntry(actionEntry);
+            //}
+
+            //// initialize change handlers
+            //var viewTypeData = ViewData.GetViewTypeData(ViewTypeName);
+            //foreach (var changeHandler in viewTypeData.ViewFieldChangeHandlers)
+            //{
+            //    SetChangeHandler(changeHandler);
+            //}
+
             // initialize bindings
-            foreach (var binding in ViewFieldBindings)
+            var count = ViewFieldBindings.Count;
+            for (var i = 0; i < count; ++i)
             {
+                var binding = ViewFieldBindings[i];
                 SetBinding(binding.ViewField, binding.BindingString);
             }
 
             // initialize state values
-            foreach (var stateValue in ViewFieldStateValues)
+            count = ViewFieldStateValues.Count;
+            for (var i = 0; i < count; ++i)
             {
-                SetStateValue(stateValue);
+                SetStateValue(ViewFieldStateValues[i]);
             }
 
             // initialize set-fields
-            foreach (var setField in SetViewFieldNames)
+            count = SetViewFieldNames.Count;
+            for (var i = 0; i < count; ++i)
             {
-                SetViewFieldSetValue(setField);
+                SetViewFieldSetValue(SetViewFieldNames[i]);
             }
 
             // initialize action handlers
-            foreach (var actionEntry in ViewActionEntries)
+            count = ViewActionEntries.Count;
+            for (var i = 0; i < count; ++i)
             {
-                SetViewActionEntry(actionEntry);
+                SetViewActionEntry(ViewActionEntries[i]);
             }
 
             // initialize change handlers
-            var viewTypeData = ViewData.GetViewTypeData(ViewTypeName);
-            foreach (var changeHandler in viewTypeData.ViewFieldChangeHandlers)
+            var viewFieldChangeHandlers = ViewData.GetViewTypeData(ViewTypeName).ViewFieldChangeHandlers;
+            count = viewFieldChangeHandlers.Count;
+            for (var i = 0; i < count; ++i)
             {
-                SetChangeHandler(changeHandler);
+                SetChangeHandler(viewFieldChangeHandlers[i]);
             }
 
-            // initialize system event triggers            
+            // initialize system event triggers
             if (Cancel.HasEntries) _eventSystemViewActions.Add(Cancel);
             if (Click.HasEntries) _eventSystemViewActions.Add(Click);
             if (Deselect.HasEntries) _eventSystemViewActions.Add(Deselect);
@@ -1120,7 +1168,7 @@ namespace MarkLight
         /// </summary>
         public void QueueAllChangeHandlers()
         {
-            var _viewFieldDataList = new List<ViewFieldData>(_viewFieldData.Values);                        
+            var _viewFieldDataList = new List<ViewFieldData>(_viewFieldData.Values);
             foreach (var viewFieldData in _viewFieldDataList)
             {
                 viewFieldData.NotifyChangeHandlerValueObservers(new HashSet<ViewFieldData>());
@@ -1174,7 +1222,7 @@ namespace MarkLight
                 var viewTypeData = ViewData.GetViewTypeData(ViewTypeName);
                 var mappedViewField = viewTypeData.GetMappedViewField(viewField);
 
-                // overwrite state value if it exist otherwise create a new one 
+                // overwrite state value if it exist otherwise create a new one
                 var stateValue = ViewFieldStateValues.FirstOrDefault(x => x.State == state && x.ViewFieldPath == mappedViewField);
                 if (stateValue != null)
                 {
@@ -1506,7 +1554,7 @@ namespace MarkLight
             }
 
             view.IsDynamic.DirectValue = true;
-            return view;           
+            return view;
         }
 
         /// <summary>
@@ -1562,7 +1610,7 @@ namespace MarkLight
             var viewPoolContainer = this.Find<ViewPoolContainer>(x => x.Id == name && x.Template == template, false);
             if (viewPoolContainer == null)
             {
-                // no. create a new one 
+                // no. create a new one
                 viewPoolContainer = CreateView<ViewPoolContainer>();
                 viewPoolContainer.Id = name;
                 viewPoolContainer.PoolSize.DirectValue = poolSize;
@@ -1571,8 +1619,8 @@ namespace MarkLight
                 viewPoolContainer.Template = template;
                 viewPoolContainer.HideFlags.Value = UnityEngine.HideFlags.HideInHierarchy;
                 // viewPoolContainer.HideFlags.Value = UnityEngine.HideFlags.HideAndDontSave; // TODO enable to only create during runtime
-                viewPoolContainer.InitializeViews();                                
-            }            
+                viewPoolContainer.InitializeViews();
+            }
             else
             {
                 // yes. just update pool size
@@ -1581,13 +1629,13 @@ namespace MarkLight
                 viewPoolContainer.Template = template;
                 viewPoolContainer.UpdateViewPool();
             }
-        
+
             return new ViewPool(viewPoolContainer);
         }
 
         /// <summary>
         /// Notifies all value observers that are dependent on the specified field. E.g. when field "Name" changes, value observers on "Name.FirstName"
-        /// and "Name.LastName" are notified in this method. 
+        /// and "Name.LastName" are notified in this method.
         /// </summary>
         public void NotifyDependentValueObservers(string viewFieldPath, bool includeViewField = false)
         {
@@ -1681,7 +1729,7 @@ namespace MarkLight
             }
 #else
             InitializeInternalDefaultValues();
-#endif 
+#endif
         }
 
         /// <summary>
@@ -1700,7 +1748,7 @@ namespace MarkLight
             }
 #else
             InitializeInternal();
-#endif 
+#endif
         }
 
         /// <summary>
@@ -1719,7 +1767,7 @@ namespace MarkLight
             }
 #else
             Initialize();
-#endif 
+#endif
         }
 
         /// <summary>
@@ -1906,7 +1954,7 @@ namespace MarkLight
         }
 
         /// <summary>
-        /// Gets child count. 
+        /// Gets child count.
         /// </summary>
         public int ChildCount
         {
@@ -1917,13 +1965,13 @@ namespace MarkLight
         }
 
         /// <summary>
-        /// Gets GameObject name (usually view type + id). 
+        /// Gets GameObject name (usually view type + id).
         /// </summary>
         public string GameObjectName
         {
             get
             {
-                var viewName = ViewTypeName == "View" ? ViewXumlName : ViewTypeName;                
+                var viewName = ViewTypeName == "View" ? ViewXumlName : ViewTypeName;
                 return !String.IsNullOrEmpty(Id) ? String.Format("{0} ({1})", viewName, Id) : viewName;
             }
         }

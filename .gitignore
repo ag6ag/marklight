@@ -43,3 +43,4 @@ Source/ExportedObj/
 *.user
 *.unityproj
 *.booproj
+*.DS_Store
