@@ -74,12 +74,17 @@ namespace MarkLight.Editor
 
             // get all XUML assets
             HashSet<TextAsset> viewAssets = new HashSet<TextAsset>();
-            foreach (var path in Configuration.Instance.ViewPaths)
+            var viewPaths = Configuration.Instance.ViewPaths;
+            var pathCount = viewPaths.Count;
+            for (var i = 0; i < pathCount; ++i)
             {
-                string localPath = path.StartsWith("Assets/") ? path.Substring(7) : path;
-                foreach (var asset in GetXumlAssetsAtPath(localPath))
+                var path = viewPaths[i];
+                var localPath = path.StartsWith("Assets/") ? path.Substring(7) : path;
+                var assets = GetXumlAssetsAtPath(localPath);
+                var assetCount = assets.Count;
+                for (var j = 0; j < assetCount; ++j)
                 {
-                    viewAssets.Add(asset);
+                    viewAssets.Add(assets[j]);
                 }
             }
 

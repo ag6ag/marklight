@@ -190,32 +190,61 @@ namespace MarkLight
             {
                 type = typeof(View);
             }
+            var typeFields = type.GetFields();
+            var typeFieldsCount = typeFields.Length;
 
             // set if view is internal
             viewTypeData.HideInPresenter = type.GetCustomAttributes(typeof(HideInPresenter), false).Any();
 
             // set view action fields
             var viewActionType = typeof(ViewAction);
-            var actionFields = type.GetFields().Where(x => x.FieldType == viewActionType).Select(y => y.Name);
-            viewTypeData.ViewActionFields.AddRange(actionFields);
+            var viewActionFields = viewTypeData.ViewActionFields;
+            for (var i = 0; i < typeFieldsCount; ++i)
+            {
+                var x = typeFields[i];
+                if (x.FieldType == viewActionType)
+                {
+                    viewActionFields.Add(x.Name);
+                }
+            }
+
 
             // set dependency fields
             var viewFieldBaseType = typeof(ViewFieldBase);
-            var dependencyFields = type.GetFields().Where(x => viewFieldBaseType.IsAssignableFrom(x.FieldType)).Select(y => y.Name);
-            viewTypeData.DependencyFields.AddRange(dependencyFields);
+            var dependencyFields = viewTypeData.DependencyFields;
+            for (var i = 0; i < typeFieldsCount; ++i)
+            {
+                var x = typeFields[i];
+                if (viewFieldBaseType.IsAssignableFrom(x.FieldType))
+                {
+                    dependencyFields.Add(x.Name);
+                }
+            }
 
             // set component fields
             var componentType = typeof(Component);
             var baseViewType = typeof(View);
-            var componentFields = type.GetFields().Where(x => componentType.IsAssignableFrom(x.FieldType) &&
-                !baseViewType.IsAssignableFrom(x.FieldType)).Select(y => y.Name);
-            viewTypeData.ComponentFields.AddRange(componentFields);
+            var componentFields = viewTypeData.ComponentFields;
+            for (var i = 0; i < typeFieldsCount; ++i)
+            {
+                var x = typeFields[i];
+                if (componentType.IsAssignableFrom(x.FieldType) && !baseViewType.IsAssignableFrom(x.FieldType))
+                {
+                    componentFields.Add(x.Name);
+                }
+            }
 
             // set reference fields
-            var referenceFields = type.GetFields().Where(x => baseViewType.IsAssignableFrom(x.FieldType) &&
-                x.Name != "Parent" && x.Name != "LayoutParent").Select(y => y.Name);
-            viewTypeData.ReferenceFields.AddRange(referenceFields);
-            viewTypeData.ReferenceFields.Add("GameObject");
+            var referenceFields = viewTypeData.ReferenceFields;
+            for (var i = 0; i < typeFieldsCount; ++i)
+            {
+                var x = typeFields[i];
+                if (baseViewType.IsAssignableFrom(x.FieldType) && x.Name != "Parent" && x.Name != "LayoutParent")
+                {
+                    referenceFields.Add(x.Name);
+                }
+            }
+            referenceFields.Add("GameObject");
 
             // set excluded component fields
             var excludedComponentFields = type.GetCustomAttributes(typeof(ExcludeComponent), true);
@@ -233,13 +262,13 @@ namespace MarkLight
             }
 
             // set mapped fields and their converters and change handlers
-            var mapFields = type.GetFields().SelectMany(x => x.GetCustomAttributes(typeof(MapViewField), true));
+            var mapFields = typeFields.SelectMany(x => x.GetCustomAttributes(typeof(MapViewField), true));
             var mapClassFields = type.GetCustomAttributes(typeof(MapViewField), true);
             viewTypeData.MapViewFields.AddRange(mapFields.Select(x => (x as MapViewField).MapFieldData));
             viewTypeData.MapViewFields.AddRange(mapClassFields.Select(x => (x as MapViewField).MapFieldData));
 
             // .. add mapped dependency fields
-            foreach (var field in type.GetFields())
+            foreach (var field in typeFields)
             {
                 var mapTo = field.GetCustomAttributes(typeof(MapTo), true).FirstOrDefault() as MapTo;
                 if (mapTo == null)
@@ -292,7 +321,7 @@ namespace MarkLight
             }
 
             // set view field converters and change handlers
-            foreach (var field in type.GetFields())
+            foreach (var field in typeFields)
             {
                 var valueConverter = field.GetCustomAttributes(typeof(ValueConverter), true).FirstOrDefault();
                 if (valueConverter != null)
@@ -370,7 +399,7 @@ namespace MarkLight
             }
 
             // get the normal fields that aren't mapped
-            var fields = type.GetFields().Where(x =>
+            var fields = typeFields.Where(x =>
                 !viewTypeData.FieldsNotSetFromXuml.Contains(x.Name) &&
                 !viewTypeData.ReferenceFields.Contains(x.Name) &&
                 !viewTypeData.ComponentFields.Contains(x.Name) &&
@@ -668,6 +697,14 @@ namespace MarkLight
                 else
                 {
                     component = go.AddComponent(componentFieldInfo.FieldType);
+                    //if (componentField == "ImageComponent")
+                    //{
+                    //    (component as UnityEngine.UI.Image).raycastTarget = false;
+                    //}
+                    //else if (componentField == "TextComponent")
+                    //{
+                    //    (component as UnityEngine.UI.Text).raycastTarget = false;
+                    //}
                 }
                 componentFieldInfo.SetValue(view, component);
             }
