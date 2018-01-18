@@ -54,22 +54,11 @@ namespace MarkLight
         public string Theme;
 
         /// <summary>
-        /// Base directory.
-        /// </summary>
-        /// <d>Specifies the base directory to be used by the view and its children. The base directory is used when loading resources such as sprites, fonts, etc.</d>
-        public string BaseDirectory;
-
-        /// <summary>
-        /// Unit size.
-        /// </summary>
-        /// <d>Specifies the user-defined unit size to be used by the view and its children. Used when element size is specified in user-defined units to convert it into pixels.</d>
-        public Vector3 UnitSize;
-
-        /// <summary>
         /// Layout parent view.
         /// </summary>
         /// <d>The layout parent view is the direct ascendant of the current view in the scene object hierarchy.</d>
         [NotSetFromXuml]
+        [HideInInspector]
         public View LayoutParent;
 
         /// <summary>
@@ -77,6 +66,7 @@ namespace MarkLight
         /// </summary>
         /// <d>The parent of the view is the logical parent to which this view belongs. In the XUML any view you can see has the current view as its logical parent.</d>
         [NotSetFromXuml]
+        [HideInInspector]
         public View Parent;
 
         /// <summary>
@@ -84,6 +74,7 @@ namespace MarkLight
         /// </summary>
         /// <d>View that is the parent to the content of this view. Usually it is the current view itself but when a ContentPlaceholder is used the Content points to the view that contains the ContentPlaceholder.</d>
         [NotSetFromXuml]
+        [HideInInspector]
         public View Content;
 
         /// <summary>
@@ -114,6 +105,7 @@ namespace MarkLight
         /// GameObject the view is attached to.
         /// </summary>
         /// <d>GameObject that the view is attached to.</d>
+        [HideInInspector]
         public GameObject GameObject;
 
         #endregion
@@ -124,6 +116,7 @@ namespace MarkLight
         /// Position, rotation and scale of the view.
         /// </summary>
         /// <d>The view transform is used to manipulate the position, rotation and scale of the view in relation to the layout parent view's transform or in world space. The transform is sometimes manipulated indirectly through other view fields and through the view model's internal layout logic.</d>
+        [HideInInspector]
         public Transform Transform;
 
         /// <summary>
@@ -155,102 +148,119 @@ namespace MarkLight
         /// Cancel view action.
         /// </summary>
         /// <d>Triggered by the EventSystem when a cancel event occurs.</d>
+        [HideInInspector]
         public ViewAction Cancel;
 
         /// <summary>
         /// Deselect view action.
         /// </summary>
         /// <d>Triggered by the EventSystem when another view is selected.</d>
+        [HideInInspector]
         public ViewAction Deselect;
 
         /// <summary>
         /// Drop view action.
         /// </summary>
         /// <d>Triggered by the EventSystem when the view accepts a drop.</d>
+        [HideInInspector]
         public ViewAction Drop;
 
         /// <summary>
         /// Move view action.
         /// </summary>
         /// <d>Triggered by the EventSystem when a move event occurs.</d>
+        [HideInInspector]
         public ViewAction Move;
 
         /// <summary>
         /// Click view action.
         /// </summary>
         /// <d>Triggered by the EventSystem when the user clicks/touches on the view.</d>
+        [HideInInspector]
         public ViewAction Click;
 
         /// <summary>
         /// Drag view action.
         /// </summary>
         /// <d>Triggered by the EventSystem when the user presses mouse on and starts to drag over the view.</d>
+        [HideInInspector]
         public ViewAction BeginDrag;
 
         /// <summary>
         /// End drag view action.
         /// </summary>
         /// <d>Triggered by the EventSystem when the user stops dragging mouse over the view.</d>
+        [HideInInspector]
         public ViewAction EndDrag;
 
         /// <summary>
         /// Drag view action.
         /// </summary>
         /// <d>Triggered by the EventSystem as the user drags the mouse over the view.</d>
+        [HideInInspector]
         public ViewAction Drag;
 
         /// <summary>
         /// Initialize potential drag view action.
         /// </summary>
         /// <d>Triggered by the EventSystem as the user initiates a potential drag over the view.</d>
+        [HideInInspector]
         public ViewAction InitializePotentialDrag;
 
         /// <summary>
         /// Mouse down view action.
         /// </summary>
         /// <d>Triggered by the EventSystem when the mouse/touch presses down over the view.</d>
+        [HideInInspector]
         public ViewAction MouseDown;
 
         /// <summary>
         /// Mouse enter view action.
         /// </summary>
         /// <d>Triggered by the EventSystem when the mouse enters the view.</d>
+        [HideInInspector]
         public ViewAction MouseEnter;
 
         /// <summary>
         /// Mouse exit view action.
         /// </summary>
         /// <d>Triggered by the EventSystem when the mouse exits the view.</d>
+        [HideInInspector]
         public ViewAction MouseExit;
 
         /// <summary>
         /// Mouse up view action.
         /// </summary>
         /// <d>Triggered by the EventSystem when the mouse/thouch releases over the view.</d>
+        [HideInInspector]
         public ViewAction MouseUp;
 
         /// <summary>
         /// Scroll view action.
         /// </summary>
         /// <d>Triggered by the EventSystem when the user scrolls when the view is selected.</d>
+        [HideInInspector]
         public ViewAction Scroll;
 
         /// <summary>
         /// Select view action.
         /// </summary>
         /// <d>Triggered by the EventSystem when the view is selected.</d>
+        [HideInInspector]
         public ViewAction Select;
 
         /// <summary>
         /// Submit view action.
         /// </summary>
         /// <d>Triggered by the EventSystem when the user submits while view is selected.</d>
+        [HideInInspector]
         public ViewAction Submit;
 
         /// <summary>
         /// Update selected view action.
         /// </summary>
         /// <d>Triggered by the EventSystem when the object associated with this EventTrigger is updated.</d>
+        [HideInInspector]
         public ViewAction UpdateSelected;
 
         #endregion
@@ -272,12 +282,14 @@ namespace MarkLight
         /// Activated view action.
         /// </summary>
         /// <d>Triggered every time the view is activated. Also triggered once the view is intialized if it starts out activated.</d>
+        [HideInInspector]
         public ViewAction Activated;
 
         /// <summary>
         /// Deactivated view action.
         /// </summary>
         /// <d>Triggered every time the view is deactivated. Also triggered once the view is intialized if it starts out deactivated.</d>
+        [HideInInspector]
         public ViewAction Deactivated;
 
         /// <summary>
@@ -302,27 +314,34 @@ namespace MarkLight
         /// The name of the view's type.
         /// </summary>
         [NotSetFromXuml]
+        [HideInInspector]
         public string ViewTypeName;
 
         /// <summary>
         /// Name of the view as specified in the XUML.
         /// </summary>
         [NotSetFromXuml]
+        [HideInInspector]
         public string ViewXumlName;
 
         [NotSetFromXuml]
+        [HideInInspector]
         public List<ViewFieldBinding> ViewFieldBindings;
 
         [NotSetFromXuml]
+        [HideInInspector]
         public List<ViewActionEntry> ViewActionEntries;
 
         [NotSetFromXuml]
+        [HideInInspector]
         public List<ViewFieldStateValue> ViewFieldStateValues;
 
         [NotSetFromXuml]
+        [HideInInspector]
         public List<string> SetViewFieldNames;
 
         [NotSetFromXuml]
+        [HideInInspector]
         public ValueConverterContext ValueConverterContext;
 
         public static string DefaultStateName = "Default";

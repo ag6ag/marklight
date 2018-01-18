@@ -26,6 +26,18 @@ namespace MarkLight
     {
         #region Fields
 
+        /// <summary>
+        /// Unit size.
+        /// </summary>
+        /// <d>Specifies the user-defined unit size to be used by the view and its children. Used when element size is specified in user-defined units to convert it into pixels.</d>
+        public Vector3 UnitSize;
+
+        /// <summary>
+        /// Base directory.
+        /// </summary>
+        /// <d>Specifies the base directory to be used by the view and its children. The base directory is used when loading resources such as sprites, fonts, etc.</d>
+        public string BaseDirectory;
+
         public List<ViewTypeData> ViewTypeDataList;
         public List<ThemeData> ThemeData;
         public List<ResourceDictionary> ResourceDictionaries;

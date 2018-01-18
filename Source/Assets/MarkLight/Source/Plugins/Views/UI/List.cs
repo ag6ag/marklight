@@ -635,6 +635,7 @@ namespace MarkLight.Views.UI
         /// </summary>
         /// <d>Triggered when a list item is selected either by user interaction or programmatically.</d>
         /// <actionData>ItemSelectionActionData</actionData>
+        [HideInInspector]
         public ViewAction ItemSelected;
 
         /// <summary>
@@ -642,6 +643,7 @@ namespace MarkLight.Views.UI
         /// </summary>
         /// <d>Triggered when a list item is deselected either by user interaction or programmatically. An item is deselected if another item is selected and CanMultiSelect is false. If CanMultiSelect is true an item is deselected when the user clicks on an selected item.</d>
         /// <actionData>ItemSelectionActionData</actionData>
+        [HideInInspector]
         public ViewAction ItemDeselected;
 
         /// <summary>
@@ -649,6 +651,7 @@ namespace MarkLight.Views.UI
         /// </summary>
         /// <d>Triggered when the list changes (items added, removed or moved).</d>
         /// <actionData>ListChangedActionData</actionData>
+        [HideInInspector]
         public ViewAction ListChanged;
 
         private IObservableList _oldItems;

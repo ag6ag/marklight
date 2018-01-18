@@ -32,36 +32,42 @@ namespace MarkLight.Views
         /// Animation started.
         /// </summary>
         /// <d>Triggered when the animation has started.</d>
+        [HideInInspector]
         public ViewAction AnimationStarted;
 
         /// <summary>
         /// Animation reversed.
         /// </summary>
         /// <d>Triggered when the animation is reversed.</d>
+        [HideInInspector]
         public ViewAction AnimationReversed;
 
         /// <summary>
         /// Animation completed.
         /// </summary>
         /// <d>Triggered when the animation is completed.</d>
+        [HideInInspector]
         public ViewAction AnimationCompleted;
 
         /// <summary>
         /// Animation stopped.
         /// </summary>
         /// <d>Triggered when the animation is stopped.</d>
+        [HideInInspector]
         public ViewAction AnimationStopped;
 
         /// <summary>
         /// Animation paused.
         /// </summary>
         /// <d>Triggered when the animation has paused.</d>
+        [HideInInspector]
         public ViewAction AnimationPaused;
 
         /// <summary>
         /// Animation resumed.
         /// </summary>
         /// <d>Triggered when the animation resumes playing.</d>
+        [HideInInspector]
         public ViewAction AnimationResumed;
 
         #endregion

@@ -315,6 +315,7 @@ namespace MarkLight.Views.UI
         /// </summary>
         /// <d>Triggered when a tab is selected either by user interaction or programmatically.</d>
         /// <actionData>TabSelectionActionData</actionData>
+        [HideInInspector]
         public ViewAction TabSelected;
 
         /// <summary>
@@ -322,6 +323,7 @@ namespace MarkLight.Views.UI
         /// </summary>
         /// <d>Triggered when the list changes (items added, removed or moved).</d>
         /// <actionData>ListChangedActionData</actionData>
+        [HideInInspector]
         public ViewAction ListChanged;
 
         public Tab SelectedTab;

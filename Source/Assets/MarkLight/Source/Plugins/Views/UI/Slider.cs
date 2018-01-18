@@ -241,6 +241,7 @@ namespace MarkLight.Views.UI
         /// Slider value changed.
         /// </summary>
         /// <d>Triggered when the slider value changes. Triggered once when handle is released if SetValueOnDragEnded is set.</d>
+        [HideInInspector]
         public ViewAction ValueChanged;
 
         #endregion
