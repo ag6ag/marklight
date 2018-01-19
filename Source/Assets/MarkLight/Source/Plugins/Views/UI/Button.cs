@@ -193,6 +193,7 @@ namespace MarkLight.Views.UI
         /// Toggle click view action.
         /// </summary>
         /// <d>Similar to Click view action but is only triggered if IsToggleButton is True and if the button toggles its state. It also supplies a bool indicating the button toggle state.</d>
+        [HideInInspector]
         public ViewAction ToggleClick;
 
         #endregion

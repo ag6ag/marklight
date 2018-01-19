@@ -123,6 +123,7 @@ namespace MarkLight
         /// Position of the view.
         /// </summary>
         /// <d>The local position of the view in relation to the layout parent view transform.</d>
+        [HideInInspector]
         [MapTo("Transform.localPosition")]
         public _Vector3 Position;
 
@@ -130,6 +131,7 @@ namespace MarkLight
         /// Rotation of the view.
         /// </summary>
         /// <d>The local rotation of the view in relation to the layout parent view transform. Stored as a Quaternion but specified in XUML as euler angles.</d>
+        [HideInInspector]
         [MapTo("Transform.localRotation")]
         public _Quaternion Rotation;
 
@@ -137,6 +139,7 @@ namespace MarkLight
         /// Scale of the view.
         /// </summary>
         /// <d>The scale of the view in relation to the layout parent view transform.</d>
+        [HideInInspector]
         [MapTo("Transform.localScale")]
         public _Vector3 Scale;
 
@@ -269,6 +272,7 @@ namespace MarkLight
         /// Item data.
         /// </summary>
         /// <d>Provides a mechanism to bind to dynamic list data. The item is set, e.g. by the List view on the child views it generates for its dynamic list data. The Item points to the list item data the view is associated with.</d>
+        [HideInInspector]
         [GenericViewField]
         public _object Item;
 

@@ -13,11 +13,15 @@ namespace MarkLight
     public class ViewFieldBase
     {
         #region Fields
-
+        [HideInInspector]
         public View ParentView;
+        [HideInInspector]
         public string ViewFieldPath;
+        [HideInInspector]
         public bool IsMapped;
+        [HideInInspector]
         public bool _isSet;
+        [HideInInspector]
         public event EventHandler ValueSet;
 
         #endregion
